@@ -1,0 +1,10 @@
+  @Test
+  public void testClassLoader() throws Exception {
+    String classpath = System.getProperty("java.class.path");
+    System.err.println("classpath:" + classpath);
+    String separator = File.separator;
+    System.err.println("speator:" + separator);
+    URL url = new URL(classpath + separator + "ojdbc7-7.jar");
+    URLClassLoader child = new URLClassLoader(new URL[] {url}, Thread.currentThread().getContextClassLoader());
+    Class.forName("com.MyClass", true, child);
+  }
